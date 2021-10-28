@@ -4,10 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { createStore } from 'redux'
+import edit from './reducers/user'
+
+import {editUser, getUser} from './actions/action'
+
+import { Provider } from 'react-redux';
+
+let store = createStore(edit);
+
+const unsubscribe = store.subscribe(() => console.log(store.getState()))
+
+store.dispatch(editUser({name: "Daniil"}));
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
